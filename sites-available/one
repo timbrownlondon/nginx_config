@@ -1,0 +1,26 @@
+server {
+        server_name one.redpill.me.uk;
+        root /usr/share/wordpress;
+
+        index index.php;
+
+        access_log /var/log/nginx/one/access.log;
+        error_log /var/log/nginx/one/error.log;
+
+        # include global/restrictions.conf;
+
+        # Additional rules go here.
+
+        # Only include one of the files below.
+#       include global/wordpress.conf;
+#       include global/wordpress-ms-subdir.conf;
+#       include global/wordpress-ms-subdomain.conf;
+
+        location ~ \.php$ {
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            #  fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index index.php;
+            include fastcgi_params;
+        }
+}

@@ -1,0 +1,16 @@
+server {
+        server_name three.redpill.me.uk;
+        root /usr/share/drupal-7.43/;
+
+        index index.php;
+
+        access_log /var/log/nginx/three/access.log;
+        error_log /var/log/nginx/three/error.log;
+
+        location ~ \.php {
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            fastcgi_index index.php;
+            include fastcgi_params;
+        }
+}
