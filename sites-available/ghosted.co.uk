@@ -1,0 +1,32 @@
+server {
+  listen 80;
+  server_name  ghosted.co.uk www.ghosted.co.uk;
+  access_log   /var/log/nginx/ghosted.co.uk.access.log;
+  error_log    /var/log/nginx/ghosted.co.uk.error.log;
+
+  autoindex on;
+
+  location /  {
+    ssi  on;
+    root /var/www/ghosted;
+    expires 5m;
+  }
+
+  location ~ \.(jpg|png)$ {
+    root /var/www/ghosted;
+    expires 7d;
+  }
+
+
+    listen 443 ssl; # managed by Certbot
+ssl_certificate /etc/letsencrypt/live/ghosted.co.uk/fullchain.pem; # managed by Certbot
+ssl_certificate_key /etc/letsencrypt/live/ghosted.co.uk/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+
+
+    if ($scheme != "https") {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+}
+
