@@ -11,7 +11,7 @@ server {
 
   location /images  {
     root /var/www/box_brownie_site/public;
-    expires 60m;
+    expires 7d;
     access_log /var/log/nginx/brownie.static.access.log;
     error_log /var/log/nginx/brownie.static.error.log;
   }
