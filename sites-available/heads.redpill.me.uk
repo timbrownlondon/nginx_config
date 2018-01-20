@@ -5,7 +5,10 @@ server {
   error_log    /var/log/nginx/redpill.me.uk.error.log;
 
   location /  {
-    proxy_pass   http://127.0.0.1:4000;
+    # proxy_pass   http://127.0.0.1:4000;
+    root /home/tim/work/static;
+    autoindex on;
+    index index.html;
   }
 
   listen 443 ssl; # managed by Certbot
