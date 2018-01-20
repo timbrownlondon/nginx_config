@@ -1,0 +1,19 @@
+server {
+
+  listen 80;
+  server_name brownie.redpill.me.uk;
+
+  location /  {
+    proxy_pass   http://127.0.0.1:3000;
+    access_log /var/log/nginx/brownie.app.access.log;
+    error_log /var/log/nginx/brownie.app.error.log;
+  }
+
+  location /images  {
+    root /var/www/box_brownie_site/public;
+    expires 60m;
+    access_log /var/log/nginx/brownie.static.access.log;
+    error_log /var/log/nginx/brownie.static.error.log;
+  }
+
+}
