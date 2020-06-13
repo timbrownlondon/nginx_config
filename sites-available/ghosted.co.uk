@@ -4,6 +4,9 @@ server {
   access_log   /var/log/nginx/ghosted.co.uk.access.log;
   error_log    /var/log/nginx/ghosted.co.uk.error.log;
 
+  # redirect in preparation for shut down of ghosted.co.uk
+  return 301 http://ghosted.tim-brown.org.uk$request_uri;
+
   autoindex on;
 
   location ~ /\.git {
@@ -11,6 +14,7 @@ server {
   }
 
   location /  {
+
     ssi  on;
     root /var/www/ghosted;
     expires 5m;
