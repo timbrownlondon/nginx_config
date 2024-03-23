@@ -1,0 +1,43 @@
+server {
+  server_name  members.scruffyfox.org.uk;
+  access_log   /var/log/nginx/members.scruffyfox.org.uk.access.log;
+  error_log    /var/log/nginx/members.scruffyfox.org.uk.error.log;
+
+  autoindex on;
+
+  location ~ /\.git {
+    return 404;
+  }
+
+  location /  {
+    ssi  on;
+    root /home/tim/work/scruffy_fox_members/content/;
+    expires 5m;
+  }
+
+  location ~ \.(jpg|png)$ {
+    root /home/tim/work/scruffy_fox_members/content/;
+    expires 1d;
+  }
+
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/members.scruffyfox.org.uk/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/members.scruffyfox.org.uk/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = members.scruffyfox.org.uk) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+  server_name  members.scruffyfox.org.uk;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+}
