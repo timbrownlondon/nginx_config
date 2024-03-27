@@ -12,12 +12,12 @@ server {
   location /  {
 
     ssi  on;
-    root /var/www/claresimcock;
+    root /home/tim/sites/clare_simcock;
     expires 5m;
   }
 
   location ~ \.(jpg|png)$ {
-    root /var/www/claresimcock;
+    root /home/tim/sites/clare_simcock;
     expires 7d;
   }
 
@@ -41,7 +41,11 @@ server {
     } # managed by Certbot
 
 
-  listen 80;
   server_name  claresimcock.com www.claresimcock.com;
+    listen 80;
     return 404; # managed by Certbot
+
+
+
+
 }
