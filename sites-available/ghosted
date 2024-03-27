@@ -1,11 +1,7 @@
 server {
-  listen 80;
-  server_name  ghosted.co.uk www.ghosted.co.uk;
-  access_log   /var/log/nginx/ghosted.co.uk.access.log;
-  error_log    /var/log/nginx/ghosted.co.uk.error.log;
-
-  # redirect in preparation for shut down of ghosted.co.uk
-  return 301 http://ghosted.tim-brown.org.uk$request_uri;
+  server_name  ghosted.tim-brown.org.uk
+  access_log   /var/log/nginx/ghosted.access.log;
+  error_log    /var/log/nginx/ghosted.error.log;
 
   autoindex on;
 
@@ -14,26 +10,33 @@ server {
   }
 
   location /  {
-
     ssi  on;
-    root /var/www/ghosted;
+    root /home/tim/sites/ghosted/ssi-site;
     expires 5m;
   }
 
   location ~ \.(jpg|png)$ {
-    root /var/www/ghosted;
+    root /home/tim/sites/ghosted/ssi-site;
     expires 7d;
   }
 
-
     listen 443 ssl; # managed by Certbot
-ssl_certificate /etc/letsencrypt/live/ghosted.co.uk/fullchain.pem; # managed by Certbot
-ssl_certificate_key /etc/letsencrypt/live/ghosted.co.uk/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/ghosted.tim-brown.org.uk/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ghosted.tim-brown.org.uk/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
-
-    if ($scheme != "https") {
+}
+server {
+    if ($host = ghosted.tim-brown.org.uk) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
+
+
+  listen 80;
+  server_name  ghosted.tim-brown.org.uk
+  access_log   /var/log/nginx/ghosted.access.log;
+    return 404; # managed by Certbot
+
 
 }
