@@ -1,0 +1,46 @@
+server {
+  server_name  twitter-people.tim-brown.org.uk;
+  access_log   /var/log/nginx/twitter-people.access.log;
+  error_log    /var/log/nginx/twitter-people.error.log;
+
+  autoindex on;
+
+  location ~ /\.git {
+    return 404;
+  }
+
+  location /  {
+    ssi  on;
+    root /home/tim/sites/twitter_people_site;
+    expires 5m;
+  }
+
+  location ~ \.(jpg|png)$ {
+    root /home/tim/sites/twitter_people_site;
+    expires 1d;
+  }
+
+
+
+
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/twitter-people.tim-brown.org.uk/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/twitter-people.tim-brown.org.uk/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = twitter-people.tim-brown.org.uk) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+  server_name  twitter-people.tim-brown.org.uk;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+}
