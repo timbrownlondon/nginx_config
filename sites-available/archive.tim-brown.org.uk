@@ -11,12 +11,12 @@ server {
 
   location /  {
     ssi  on;
-    root /home/tim/sites/archive;
+    root /home/tim/sites/archive_site;
     expires 5m;
   }
 
   location ~ \.(jpg|png)$ {
-    root /home/tim/sites/archive;
+    root /home/tim/sites/archive_site;
     expires 1d;
   }
 
