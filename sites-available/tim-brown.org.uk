@@ -11,21 +11,21 @@ server {
 
   location /  {
     ssi  on;
-    root /home/tim/sites/tim-brown.org.uk;
+    root /var/www/sites/tim-brown.org.uk;
     expires 5m;
   }
 
   location ~ \.(jpg|png)$ {
-    root /home/tim/sites/tim-brown.org.uk;
+    root /var/www/sites/tim-brown.org.uk;
     expires 1d;
   }
+
 
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/tim-brown.org.uk/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/tim-brown.org.uk/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
 
 }
 server {
@@ -39,11 +39,8 @@ server {
     } # managed by Certbot
 
 
-  listen 80;
   server_name  tim-brown.org.uk www.tim-brown.org.uk;
+    listen 80;
     return 404; # managed by Certbot
-
-
-
 
 }
