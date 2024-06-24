@@ -12,7 +12,7 @@ server {
   location /  {
     ssi  on;
     root /var/www/sites/scruffy_fox_members/content;
-    expires 5m;
+    expires 3h;
   }
 
   location /members {
@@ -23,7 +23,7 @@ server {
 
   location ~ \.(jpg|png)$ {
     root /var/www/sites/scruffy_fox_members/content/;
-    expires 1d;
+    expires 7d;
   }
 
 
