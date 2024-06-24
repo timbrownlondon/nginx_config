@@ -1,9 +1,7 @@
 server {
-  server_name  ghosted.tim-brown.org.uk
+  server_name  ghosted.tim-brown.org.uk;
   access_log   /var/log/nginx/ghosted.access.log;
   error_log    /var/log/nginx/ghosted.error.log;
-
-  autoindex on;
 
   location ~ /\.git {
     return 404;
@@ -11,14 +9,16 @@ server {
 
   location /  {
     ssi  on;
-    root /home/tim/sites/ghosted/ssi-site;
+    root /var/www/sites/ghosted/ssi-site;
     expires 5m;
   }
 
   location ~ \.(jpg|png)$ {
-    root /home/tim/sites/ghosted/ssi-site;
+    root /var/www/sites/ghosted/ssi-site;
     expires 7d;
   }
+
+
 
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/ghosted.tim-brown.org.uk/fullchain.pem; # managed by Certbot
@@ -33,9 +33,9 @@ server {
     } # managed by Certbot
 
 
-  listen 80;
-  server_name  ghosted.tim-brown.org.uk
+  server_name  ghosted.tim-brown.org.uk;
   access_log   /var/log/nginx/ghosted.access.log;
+    listen 80;
     return 404; # managed by Certbot
 
 
