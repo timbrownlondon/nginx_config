@@ -21,8 +21,8 @@ location / {
     proxy_hide_header      Set-Cookie;
     proxy_ignore_headers   Set-Cookie;
     proxy_intercept_errors on;
-    add_header             Cache-Control max-age=10;
-    proxy_pass             http://$bucket; # without trailing slash
+    expires                1d;
+    proxy_pass             http://$bucket;
   }
 
     listen 443 ssl; # managed by Certbot
