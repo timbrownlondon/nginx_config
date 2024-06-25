@@ -1,8 +1,8 @@
 server {
   # listen 443 ssl;
   server_name  s.tim-brown.org.uk;
-  access_log  /var/log/nginx/static.access.log  combined;
-  error_log   /var/log/nginx/static.error.log;
+  access_log  /var/log/nginx/s3-proxy.access.log  combined;
+  error_log   /var/log/nginx/s3-proxy.error.log;
   set $bucket "i.tim-brown.org.uk.s3-website.eu-west-2.amazonaws.com";
   sendfile on;
 location / {
