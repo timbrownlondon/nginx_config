@@ -11,12 +11,12 @@ server {
 
   location /  {
     ssi  on;
-    root /var/www/sites/tim-brown.org.uk;
+    root /var/www/sites/tim-brown-org-uk;
     expires 5m;
   }
 
   location ~ \.(jpg|png)$ {
-    root /var/www/sites/tim-brown.org.uk;
+    root /var/www/sites/tim-brown-org-uk;
     expires 1d;
   }
 
