@@ -11,18 +11,14 @@ server {
 
   location /  {
     ssi  on;
-    root /home/tim/sites/twitter_people_site;
+    root /var/www/sites/twitter_people_site;
     expires 5m;
   }
 
   location ~ \.(jpg|png)$ {
-    root /home/tim/sites/twitter_people_site;
+    root /var/www/sites/twitter_people_site;
     expires 1d;
   }
-
-
-
-
 
 
     listen 443 ssl; # managed by Certbot
