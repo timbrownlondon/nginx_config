@@ -15,6 +15,11 @@ server {
     expires 5m;
   }
 
+  location ~ /img/(\w+) {
+    set $ID $1;
+    rewrite .* /page/index.html;
+  }
+
   location ~ \.(jpg|png)$ {
     root /var/www/sites/tim-brown-org-uk;
     expires 1d;
