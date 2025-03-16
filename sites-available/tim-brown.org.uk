@@ -17,6 +17,7 @@ server {
 
   location ~ /img/(\w+) {
     set $ID $1;
+    set $VARS_FILE /ssi/$1.html;
     rewrite .* /page/index.html;
   }
 
