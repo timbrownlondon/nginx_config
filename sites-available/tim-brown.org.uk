@@ -7,6 +7,8 @@ server {
 
   rewrite ^/list/$ /list/01/ permanent;
 
+  error_page 404 /img/9b3510;
+
   location ~ /\.git {
     return 404;
   }
