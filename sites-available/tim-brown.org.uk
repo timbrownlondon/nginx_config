@@ -5,6 +5,8 @@ server {
 
   autoindex on;
 
+  rewrite ^/list/$ /list/01/ permanent;
+
   location ~ /\.git {
     return 404;
   }
