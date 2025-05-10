@@ -10,7 +10,7 @@ Then periodically the GitHub repo is synced manually.
 ```
 git push --mirror github
 ```
-After creating README.md through GitHUB's web interface I did the following to sync to my local checkout and to Bitbucket:
+After creating a README.md through GitHub's web interface I did the following to sync to my local checkout and to Bitbucket.
 ```
 git fetch github
 git merge github/master
